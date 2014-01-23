@@ -11,5 +11,6 @@ end
 
 recipe "gifbox", "Install imagemagick and ffmpeg"
 
+depends "apt"
 depends "ffmpeg"
 depends "imagemagick"
