@@ -41,8 +41,8 @@ http://superuser.com/questions/556029/how-do-i-convert-a-video-to-gif-using-ffmp
 
 
 
-ffmpeg -i visual_editor.mov -vf scale=640:-1 -r 12 frames/ffout%03d.png
-convert -delay 5 -loop 0 -coalesce -layers Optimize  frames/ffout*.png visual_editor.gif
+ffmpeg -i make_presentations.mov -vf scale=640:-1 -r 12 frames/ffout%03d.png
+convert -delay 5 -loop 0 -coalesce -layers Optimize  frames/ffout*.png make_presentations.gif
 
 
 
@@ -51,11 +51,24 @@ convert -layers Optimize make_a_book.gif make_a_book_optimized.gif
 
 
 
-3) 
+3) ffmpeg -i insert_image.mov -vf scale=640:-1 -t 10 -r 10 alt_scale.gif
 
+## Using other codecs
 
+This will convert a file from mp4 (produced by screenflow) to webm (a format supported by other browsers):
 
-ffmpeg -i insert_image.mov -vf scale=640:-1 -t 10 -r 10 alt_scale.gif
+```
+ffmpeg -i visual_editor.mp4 -acodec libvorbis -aq 5 -ac 2 -qmax 25 -threads 2 visual_editor.webm
+```
+
+Once you've uploaded them to a hosting service, you can embed them to autoplay on a pge using markup like this:
+
+```
+<video autoplay="true" loop="true" muted="true" width="640">
+	<source src="https://s3.amazonaws.com/orm-atlas-media/introducingatlas/visual_editor.mp4" type="video/mp4" /> 
+	<source src="https://s3.amazonaws.com/orm-atlas-media/introducingatlas/visual_editor.webm" type="video/webm" /> Your browser does not support the video tag.</video>
+</section>
+```
 
 
 
